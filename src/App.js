@@ -1,7 +1,18 @@
 import React from 'react'
+import PageRoute from './routes/PageRoute'
+import NavBar from './components/NavBar'
+import Footer from './components/Footer'
+import { Provider } from 'react-redux'
+import Store from './config/StoreConfig'
 
-export const App = () => {
+const App = () => {
   return (
-    <div>App</div>
+    <Provider store={Store}>
+    <NavBar/>
+    <PageRoute/>
+    <Footer/>
+    </Provider>
   )
 }
+
+export default App
