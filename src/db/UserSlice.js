@@ -34,9 +34,23 @@ const UserSlice=createSlice({
       ],
     },
     reducers:{
-        createUser:()=>{},
+        createUser:(state,action)=>{
+          state.value.push(action.payload)
+          alert('created')
+        },
         UpdateUser:()=>{},
-        DeleteUser:()=>{}
+        
+        DeleteUser:(state,action)=>{
+          let UserID=null
+          state.value.find((user,index)=>{
+            if(user.id===action.payload){
+              UserID=index 
+            }
+          return ''})
+            state.value.splice(UserID,1)
+          alert("deleted")
+          
+        }
     }
 })
 export const { createUser, UpdateUser, DeleteUser } = UserSlice.actions

@@ -3,9 +3,13 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { IconButton, TableCell, TableRow } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
+import { useDispatch } from "react-redux";
+import { DeleteUser } from "../db/UserSlice";
 
 const TableItem = ({ User }) => {
-  console.log(User);
+
+  const dispatch=useDispatch()
+  //console.log(User);
   return (
     <>
       {User &&
@@ -24,7 +28,7 @@ const TableItem = ({ User }) => {
           </IconButton>
         </TableCell>
         <TableCell align="center">
-          <IconButton color="error">
+          <IconButton color="error" onClick={()=>dispatch(DeleteUser(User.id))}>
             <ClearIcon />
           </IconButton>
         </TableCell>

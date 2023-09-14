@@ -1,13 +1,15 @@
-import { Container, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Container, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React from 'react'
 import TableItem from '../components/TableItem'
 import { useSelector } from 'react-redux'
+import AddIcon from '@mui/icons-material/Add';
 const Home = () => {
   const UserValues=useSelector(state=>state.userStore.value)
   console.log(UserValues)
   return (
     <Container>
     <Typography variant='h4' align='center'>Users Table</Typography>
+    <Typography align='right'><Button variant='contained' startIcon={<AddIcon/>}>Create User</Button></Typography>
     <TableContainer sx={{height:'80vh'}} align='center'>
     <TableHead>
       <TableRow>
