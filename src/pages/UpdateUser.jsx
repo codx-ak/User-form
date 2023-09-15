@@ -125,9 +125,7 @@ const [cityData, setCity] = useState([]);
                   helperText={
                     errors?.country_code && errors.country_code.message
                   }
-                  {...register("country_code", {
-                    required: "Select Country Code"
-                  })}
+                  {...register("country_code")}
                 />
               )}
             />
@@ -180,9 +178,7 @@ const [cityData, setCity] = useState([]);
                 {...params}
                 helperText={errors?.country && errors.country.message}
                 label="Country"
-                {...register("country", {
-                  required: "Select Country",
-                })}
+                {...register("country")}
               />
             )}
           />
@@ -200,7 +196,7 @@ const [cityData, setCity] = useState([]);
                 {...params}
                 helperText={errors?.state && errors.state.message}
                 label="State"
-                {...register("state", { required: "Select State" })}
+                {...register("state")}
               />
             )}
           />
@@ -216,7 +212,7 @@ const [cityData, setCity] = useState([]);
                 {...params}
                 helperText={errors?.city && errors.city.message}
                 label="City"
-                {...register("city", { required: "Select City" })}
+                {...register("city")}
               />
             )}
           />
