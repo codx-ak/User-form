@@ -39,7 +39,7 @@ const UserSlice=createSlice({
         // Updating User Data Reducer
         UpdateUserReducer:(state,action)=>{
           //finding Index
-          const IndexID=state.value.findIndex((data)=>data.id==action.payload.id)
+          const IndexID=state.value.findIndex((data)=>data.id===action.payload.id)
           state.value[IndexID]={
             id:action.payload.id,
             ...action.payload.data
@@ -51,7 +51,7 @@ const UserSlice=createSlice({
         //Delete the User
         DeleteUser:(state,action)=>{
           //finding Index
-          const IndexID=state.value.findIndex((data)=>data.id==action.payload)
+          const IndexID=state.value.findIndex((data)=>data.id===action.payload)
           state.value.splice(IndexID,1)
           alert("User deleted!")
           

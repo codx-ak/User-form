@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   //value from redux Store
   const UserValues = useSelector((state) => state.userStore.value);
-  
+  console.log(UserValues);
   return (
     <Container>
       <Typography variant="h4" align="center">

@@ -45,11 +45,15 @@ const [cityData, setCity] = useState([]);
 
 //Its API Call getting State Data based on selected country
   useEffect(() => {
-    StateData(SelectedCountry).then((data) => setState(data));
+    StateData(SelectedCountry)
+      .then((data) => setState(data))
+      .catch((err) => console.log(err));
   }, [SelectedCountry]);
 //Its API Call getting City Data based on selected State
   useEffect(() => {
-    CityData(SelectedState).then((data) => setCity(data));
+    CityData(SelectedState)
+      .then((data) => setCity(data))
+      .catch((err) => console.log(err));
   }, [SelectedState]);
 
   const {
@@ -106,7 +110,7 @@ const [cityData, setCity] = useState([]);
               sx={{ width: 150, display: "inline-block" }}
               options={countryData}
               getOptionLabel={(option) =>
-                String("+" + option.country_phone_code)
+                String(option.country_phone_code)
               }
               defaultValue={{country_phone_code:FilteredData.country_code}}
               filterSelectedOptions
@@ -115,6 +119,7 @@ const [cityData, setCity] = useState([]);
                   {...params}
                   label="Country Code"
                   type="tel"
+                  defaultValue={FilteredData.country_code}
                   helperText={
                     errors?.country_code && errors.country_code.message
                   }
@@ -141,7 +146,7 @@ const [cityData, setCity] = useState([]);
           <TextField
             {...register("address_1", {
               required: "Enter Address 1",
-              minLength: { value: 5, message: "Minimum 5 Characters" },
+              minLength: { value: 5, message: "Enter Valid Address" },
             })}
             type="text"
             label="Address 1"
@@ -195,6 +200,7 @@ const [cityData, setCity] = useState([]);
           />
           <Autocomplete
             sx={{ width: 380 }}
+            freeSolo
             options={cityData}
             getOptionLabel={(option) => option.city_name}
             defaultValue={{city_name:FilteredData.city}}
