@@ -51,7 +51,7 @@ const TableItem = ({ User }) => {
           
           {/* User Full Dedtails View */}
           <TableRow>
-            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={2}>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={3}>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <Box sx={{ margin: 1 }}>
                   <Typography variant="h6" color={'orangered'} gutterBottom component="div">
