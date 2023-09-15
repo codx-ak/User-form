@@ -24,7 +24,7 @@ const UpdateUser = () => {
   const navigate=useNavigate()
 
   //filterd Selected User Data
-  const FilteredData=UserData.find(data=>data.id== id)
+  const FilteredData=UserData.find(data=>Number(data.id)=== Number(id))
 //All country ,Stateand & City Data from API
 const [countryData, setCountry] = useState([]);
 const [stateData, setState] = useState([]);
