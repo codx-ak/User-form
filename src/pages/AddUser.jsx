@@ -10,27 +10,31 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { CityData, CountryData, StateData } from "../Api/Country";
+import { Link } from "react-router-dom";
 const AddUser = () => {
   const [countryData, setCountry] = useState([]);
+  const [SelectedCountry, setSelectedCountry] = useState("India");
+  const [SelectedState, setSelectedState] = useState("Tamil Nadu");
   const [stateData, setState] = useState([]);
   const [cityData, setCity] = useState([]);
-  
+
   useEffect(() => {
-    CountryData().then((data) => setCountry(data));
+    CountryData()
+      .then((data) => setCountry(data))
+      .catch((err) => console.log(err));
   }, []);
 
-  useEffect(()=>{
-    StateData("India").then((data) => setState(data));
-  },[])
+  useEffect(() => {
+    StateData(SelectedCountry).then((data) => setState(data));
+  }, [SelectedCountry]);
 
-  useEffect(()=>{
-    CityData("Tamil Nadu").then((data) => setCity(data));
-  },[])
+  useEffect(() => {
+    CityData(SelectedState).then((data) => setCity(data));
+  }, [SelectedState]);
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
@@ -44,7 +48,7 @@ const AddUser = () => {
         <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             {...register("first_name", {
-              required: "First Name Required",
+              required: "Enter First Name",
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
             type="text"
@@ -54,7 +58,7 @@ const AddUser = () => {
           />
           <TextField
             {...register("last_name", {
-              required: "Last Name Required",
+              required: "Enter Last Name",
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
             type="text"
@@ -63,7 +67,7 @@ const AddUser = () => {
             variant="outlined"
           />
           <TextField
-            {...register("email", { required: "Email Id Required" })}
+            {...register("email", { required: "Enter Email Id" })}
             type="email"
             label="Email"
             helperText={errors?.email && errors.email.message}
@@ -73,34 +77,30 @@ const AddUser = () => {
             <Autocomplete
               sx={{ width: 150, display: "inline-block" }}
               options={countryData}
-              getOptionLabel={(option) => `+ ${option.country_phone_code}`}
+              getOptionLabel={(option) =>
+                String("+" + option.country_phone_code)
+              }
               filterSelectedOptions
-              autoComplete={countryData.length >= 10 ? true : false}
-              renderOption={(props, option) => (
-                <Box
-                  component="li"
-                  sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                  {...props}
-                >
-                  <img
-                    loading="lazy"
-                    width="20"
-                    src={`https://flagcdn.com/w20/${option.country_short_name.toLowerCase()}.png`}
-                    srcSet={`https://flagcdn.com/w40/${option.country_short_name.toLowerCase()}.png 2x`}
-                    alt=""
-                  />
-                  +{option.country_phone_code}
-                </Box>
-              )}
               renderInput={(params) => (
-                <TextField {...params} label="Country Code" />
+                <TextField
+                  {...params}
+                  label="Country Code"
+                  type="tel"
+                  helperText={
+                    errors?.country_code && errors.country_code.message
+                  }
+                  {...register("country_code", {
+                    required: "Select Country Code",
+                  })}
+                />
               )}
             />
             <TextField
               sx={{ width: "220px", marginLeft: 1 }}
               {...register("mobile", {
-                required: "Mobile No Required",
-                minLength: { value: 5, message: "Enter Valid Number" },
+                required: "Enter Mobile No",
+                minLength: { value: 7, message: "Enter Valid Number" },
+                maxLength: { value: 13, message: "Enter Valid Number" },
               })}
               type="number"
               label="Mobile"
@@ -110,7 +110,7 @@ const AddUser = () => {
           </Box>
           <TextField
             {...register("address_1", {
-              required: "Address Required",
+              required: "Enter Address 1",
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
             type="text"
@@ -124,40 +124,66 @@ const AddUser = () => {
             label="Address 2"
             variant="outlined"
           />
+
           <Autocomplete
-          
             sx={{ width: 380 }}
             options={countryData}
             getOptionLabel={(option) => option.country_name}
             filterSelectedOptions
-            autoComplete={countryData.length >= 10 ? true : false}
-            renderInput={(params) => <TextField {...params} label="Country" {...register('country')} />}
+            onChange={(e, value) => setSelectedCountry(value.country_name)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                helperText={errors?.country && errors.country.message}
+                label="Country"
+                {...register("country", {
+                  required: "Select Country",
+                })}
+              />
+            )}
           />
+
           <Autocomplete
             sx={{ width: 380 }}
+            freeSolo
             options={stateData}
             getOptionLabel={(option) => option.state_name}
             filterSelectedOptions
-            autoComplete={stateData.length >= 10 ? true : false}
-            renderInput={(params) => <TextField {...params} label="State" />}
+            onChange={(e, value) => setSelectedState(value.state_name)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                helperText={errors?.state && errors.state.message}
+                label="State"
+                {...register("state", { required: "Select State" })}
+              />
+            )}
           />
           <Autocomplete
             sx={{ width: 380 }}
             options={cityData}
             getOptionLabel={(option) => option.city_name}
             filterSelectedOptions
-            autoComplete={cityData.length >= 10 ? true : false}
-            renderInput={(params) => <TextField {...params} label="City" />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                helperText={errors?.city && errors.city.message}
+                label="City"
+                {...register("city", { required: "Select City" })}
+              />
+            )}
           />
           <TextField
-            {...register("zip_code", { required: "Zip Code Required" })}
+            {...register("zip_code", { required: "Enter Zip Code" })}
             type="number"
             label="Zip Code"
             helperText={errors?.zip_code && errors.zip_code.message}
             variant="outlined"
           />
           <Box className="form-btn">
-            <Button variant="text">Cancel</Button>
+            <Link to="/home">
+              <Button variant="text">Cancel</Button>
+            </Link>
             <Button type="submit" variant="contained">
               Create Now
             </Button>

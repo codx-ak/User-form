@@ -5,6 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import { useDispatch } from "react-redux";
 import { DeleteUser } from "../db/UserSlice";
+import { Link } from "react-router-dom";
 
 const TableItem = ({ User }) => {
 
@@ -23,9 +24,11 @@ const TableItem = ({ User }) => {
           </IconButton>
         </TableCell>
         <TableCell align="center">
+          <Link to={`/update-user/${User.id}`}>
           <IconButton color="warning">
             <EditIcon />
           </IconButton>
+          </Link>
         </TableCell>
         <TableCell align="center">
           <IconButton color="error" onClick={()=>dispatch(DeleteUser(User.id))}>
