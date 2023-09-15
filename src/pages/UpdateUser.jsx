@@ -24,7 +24,7 @@ const UpdateUser = () => {
   const navigate=useNavigate()
 
   //filterd Selected User Data
-  const FilteredData=UserData.find(data=>data.id=== Number(id))
+  const FilteredData=UserData.find(data=>data.id== id)
 //All country ,Stateand & City Data from API
 const [countryData, setCountry] = useState([]);
 const [stateData, setState] = useState([]);
@@ -113,16 +113,15 @@ const [cityData, setCity] = useState([]);
               sx={{ width: 150, display: "inline-block" }}
               options={countryData}
               getOptionLabel={(option) =>
-                String(option.country_phone_code)
+                String("+"+option.country_phone_code)
               }
-              defaultValue={{country_phone_code:FilteredData.country_code}}
+              defaultValue={{country_phone_code:FilteredData.country_code.slice(1)}}
               filterSelectedOptions
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Country Code"
-                  type="tel"
-                  defaultValue={FilteredData.country_code}
+                  value={FilteredData.country_code}
                   helperText={
                     errors?.country_code && errors.country_code.message
                   }
