@@ -38,12 +38,16 @@ const AddUser = () => {
 
   //Its API Call getting State Data based on selected country
   useEffect(() => {
-    StateData(SelectedCountry).then((data) => setState(data));
+    StateData(SelectedCountry)
+      .then((data) => setState(data))
+      .catch((err) => console.log(err));
   }, [SelectedCountry]);
 
   //Its API Call getting City Data based on selected State
   useEffect(() => {
-    CityData(SelectedState).then((data) => setCity(data));
+    CityData(SelectedState)
+      .then((data) => setCity(data))
+      .catch((err) => console.log(err));
   }, [SelectedState]);
 
   const {

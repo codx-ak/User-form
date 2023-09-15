@@ -1,5 +1,6 @@
 import axios from "axios";
 
+const API_KEY="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJtb29ydGhpbXQxNUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJTdThFVjFENF9TTTQ4Z1JKN0lscThWWDV2aHFtY2NTNTBJdnVDYU9IVVNGbU5MT3V0RXF6czB2VjJBNFMzT3MtUXg0In0sImV4cCI6MTY5NDg3MTM5OX0.WMa7s-mVjl3ij_lRmT8s0iTGovrdWpdhE3e6wD7cOt0";
 // All Country Data 
 export const CountryData = async () => {
   try {
@@ -8,8 +9,7 @@ export const CountryData = async () => {
       {
         headers: {
           Accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJtb29ydGhpbXQxNUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJTdThFVjFENF9TTTQ4Z1JKN0lscThWWDV2aHFtY2NTNTBJdnVDYU9IVVNGbU5MT3V0RXF6czB2VjJBNFMzT3MtUXg0In0sImV4cCI6MTY5NDc3OTcxN30.0PRQAh-C3Fp263oUNun_q-9goTjEaNjCi5U3HSHp4Hg",
+          Authorization:API_KEY,
         },
       }
     );
@@ -27,8 +27,7 @@ export const StateData = async (country) => {
       {
         headers: {
           Accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJtb29ydGhpbXQxNUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJTdThFVjFENF9TTTQ4Z1JKN0lscThWWDV2aHFtY2NTNTBJdnVDYU9IVVNGbU5MT3V0RXF6czB2VjJBNFMzT3MtUXg0In0sImV4cCI6MTY5NDc3OTcxN30.0PRQAh-C3Fp263oUNun_q-9goTjEaNjCi5U3HSHp4Hg",
+          Authorization:API_KEY,
         },
       }
     );
@@ -46,8 +45,7 @@ export const CityData = async (city) => {
       {
         headers: {
           Accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJtb29ydGhpbXQxNUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJTdThFVjFENF9TTTQ4Z1JKN0lscThWWDV2aHFtY2NTNTBJdnVDYU9IVVNGbU5MT3V0RXF6czB2VjJBNFMzT3MtUXg0In0sImV4cCI6MTY5NDc3OTcxN30.0PRQAh-C3Fp263oUNun_q-9goTjEaNjCi5U3HSHp4Hg",
+          Authorization:API_KEY,
         },
       }
     );
