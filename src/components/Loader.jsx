@@ -1,6 +1,6 @@
 import React from 'react'
 import {Container} from '@mui/material'
-import './spinner.css'
+
 const Loader = () => {
   return (
     <Container className='spinner'>
