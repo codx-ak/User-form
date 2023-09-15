@@ -75,6 +75,7 @@ const AddUser = () => {
               required: "Enter First Name",
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
+            autoComplete="true"
             type="text"
             label="First Name"
             helperText={errors?.first_name && errors.first_name.message}
@@ -85,6 +86,7 @@ const AddUser = () => {
               required: "Enter Last Name",
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
+            autoComplete="true"
             type="text"
             label="Last Name"
             helperText={errors?.last_name && errors.last_name.message}
@@ -92,6 +94,7 @@ const AddUser = () => {
           />
           <TextField
             {...register("email", { required: "Enter Email Id" })}
+            autoComplete="true"
             type="email"
             label="Email"
             helperText={errors?.email && errors.email.message}
@@ -127,6 +130,7 @@ const AddUser = () => {
                 minLength: { value: 7, message: "Enter Valid Number" },
                 maxLength: { value: 13, message: "Enter Valid Number" },
               })}
+              autoComplete="true"
               type="number"
               label="Mobile"
               helperText={errors?.mobile && errors.mobile.message}
@@ -138,6 +142,7 @@ const AddUser = () => {
               required: "Enter Address 1",
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
+            autoComplete="true"
             type="text"
             label="Address 1"
             helperText={errors?.address_1 && errors.address_1.message}
@@ -145,6 +150,7 @@ const AddUser = () => {
           />
           <TextField
             {...register("address_2")}
+            autoComplete="true"
             type="text"
             label="Address 2"
             variant="outlined"
@@ -200,6 +206,7 @@ const AddUser = () => {
           />
           <TextField
             {...register("zip_code", { required: "Enter Zip Code" })}
+            autoComplete="true"
             type="number"
             label="Zip Code"
             helperText={errors?.zip_code && errors.zip_code.message}

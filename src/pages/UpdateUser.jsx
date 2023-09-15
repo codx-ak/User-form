@@ -81,6 +81,7 @@ const [cityData, setCity] = useState([]);
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
             type="text"
+            autoComplete="true"
             defaultValue={FilteredData.first_name}
             label="First Name"
             helperText={errors?.first_name && errors.first_name.message}
@@ -91,6 +92,7 @@ const [cityData, setCity] = useState([]);
               required: "Enter Last Name",
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
+            autoComplete="true"
             type="text"
             defaultValue={FilteredData.last_name}
             label="Last Name"
@@ -99,6 +101,7 @@ const [cityData, setCity] = useState([]);
           />
           <TextField
             {...register("email", { required: "Enter Email Id" })}
+            autoComplete="true"
             type="email"
             label="Email"
             defaultValue={FilteredData.email}
@@ -138,6 +141,7 @@ const [cityData, setCity] = useState([]);
                 maxLength: { value: 13, message: "Enter Valid Number" },
               })}
               defaultValue={FilteredData.mobile}
+              autoComplete="true"
               type="number"
               label="Mobile"
               helperText={errors?.mobile && errors.mobile.message}
@@ -149,6 +153,7 @@ const [cityData, setCity] = useState([]);
               required: "Enter Address 1",
               minLength: { value: 5, message: "Enter Valid Address" },
             })}
+            autoComplete="true"
             type="text"
             label="Address 1"
             defaultValue={FilteredData.address_1}
@@ -157,6 +162,7 @@ const [cityData, setCity] = useState([]);
           />
           <TextField
             {...register("address_2")}
+            autoComplete="true"
             type="text"
             label="Address 2"
             defaultValue={FilteredData.address_2 || ''}
@@ -217,6 +223,7 @@ const [cityData, setCity] = useState([]);
           />
           <TextField
             {...register("zip_code", { required: "Enter Zip Code" })}
+            autoComplete="true"
             type="number"
             label="Zip Code"
             defaultValue={FilteredData.zip_code}
