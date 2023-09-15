@@ -13,7 +13,6 @@ const PageRoute = () => {
             <Route path='home' element={<Home/>}/>
             <Route path='add-user' element={<CreateUser/>}/>
             <Route path='update-user/:id' element={<UpdateUser/>}/>
-            <Route path='delete-user/:id' element={<UpdateUser/>}/>
             <Route path='*' element={<div>404 Page</div>}/>
         </Routes>
     </Suspense>

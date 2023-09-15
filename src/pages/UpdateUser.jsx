@@ -15,30 +15,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { UpdateUserReducer } from "../db/UserSlice";
 const UpdateUser = () => {
 
+  //finding User ID in Url
   const {id}=useParams()
+  // All User Datas from Redux Store
   const UserData=useSelector(state=>state.userStore.value)
+
   const dispatch=useDispatch()
   const navigate=useNavigate()
+
+  //filterd Selected User Data
   const FilteredData=UserData.find(data=>data.id=== Number(id))
+//All country ,Stateand & City Data from API
+const [countryData, setCountry] = useState([]);
+const [stateData, setState] = useState([]);
+const [cityData, setCity] = useState([]);
 
-  const [countryData, setCountry] = useState([]);
+//User Selected Country and Default value is INDIA
   const [SelectedCountry, setSelectedCountry] = useState("India");
+  //User Selected State and Default value is TAMIL NADU
   const [SelectedState, setSelectedState] = useState("Tamil Nadu");
-  const [stateData, setState] = useState([]);
-  const [cityData, setCity] = useState([]);
 
 
+ //Its API Call getting All Country Data
   useEffect(() => {
     CountryData()
       .then((data) => setCountry(data))
       .catch((err) => console.log(err));
   }, []);
 
-
+//Its API Call getting State Data based on selected country
   useEffect(() => {
     StateData(SelectedCountry).then((data) => setState(data));
   }, [SelectedCountry]);
-
+//Its API Call getting City Data based on selected State
   useEffect(() => {
     CityData(SelectedState).then((data) => setCity(data));
   }, [SelectedState]);
@@ -49,9 +58,12 @@ const UpdateUser = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+    // summitting form
+    const onSubmit = (data) => {
+      // calling dispatch function
     dispatch(UpdateUserReducer({data,id:id}))
-    navigate('/')
+      // navigate  to home
+    navigate('/home')
   };
   return (
     <Container sx={{marginBottom:2}}>

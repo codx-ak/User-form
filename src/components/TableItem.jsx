@@ -10,11 +10,13 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 const TableItem = ({ User }) => {
   const dispatch = useDispatch();
+  //User Details View
   const [open, setOpen] = React.useState(false);
   return (
     <>
       {User && (
         <React.Fragment>
+          {/* User Table Item */}
           <TableRow key={User.id}>
             <TableCell>
               <IconButton
@@ -46,6 +48,8 @@ const TableItem = ({ User }) => {
               </IconButton>
             </TableCell>
           </TableRow>
+          
+          {/* User Full Dedtails View */}
           <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={2}>
               <Collapse in={open} timeout="auto" unmountOnExit>

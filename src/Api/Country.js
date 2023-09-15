@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// All Country Data 
 export const CountryData = async () => {
   try {
     const response =await axios.get(
@@ -18,6 +19,7 @@ export const CountryData = async () => {
   }
 };
 
+// State Data based on Country
 export const StateData = async (country) => {
   try {
     const response =await axios.get(
@@ -36,6 +38,7 @@ export const StateData = async (country) => {
   }
 };
 
+//City Data based on State
 export const CityData = async (city) => {
   try {
     const response =await axios.get(

@@ -15,14 +15,16 @@ import { useSelector } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 const Home = () => {
+  //value from redux Store
   const UserValues = useSelector((state) => state.userStore.value);
-  console.log(UserValues);
+  
   return (
     <Container>
       <Typography variant="h4" align="center">
         Users Table
       </Typography>
       <Typography align="right">
+        {/* Creating New User Url */}
         <Link to="/add-user">
           <Button variant="contained" startIcon={<AddIcon />}>
             Create User
@@ -46,9 +48,11 @@ const Home = () => {
               <TableItem key={index} User={user} />
             ))
           ) : (
-            <TableCell colSpan={7} align="center">
+            <TableRow  >
+            <TableCell colSpan={5} align="center">
               No Users
             </TableCell>
+            </TableRow>
           )}
         </TableBody>
         </Table>

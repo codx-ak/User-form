@@ -23,16 +23,22 @@ const UserSlice=createSlice({
       ],
     },
     reducers:{
+
+      //creating New User Reducer
         AddUserReducer:(state,action)=>{
+          //Generate User ID
           var UserId = Math.random().toString(8).slice(17)
           const UserDetails={
             id:UserId,
             ...action.payload
           }
           state.value.push(UserDetails)
-          alert('created')
+          alert('created Successfully')
         },
+
+        // Updating User Data Reducer
         UpdateUserReducer:(state,action)=>{
+          //finding Index
           const IndexID=state.value.findIndex((data)=>data.id==action.payload.id)
           state.value[IndexID]={
             id:action.payload.id,
@@ -42,7 +48,9 @@ const UserSlice=createSlice({
           
         },
         
+        //Delete the User
         DeleteUser:(state,action)=>{
+          //finding Index
           const IndexID=state.value.findIndex((data)=>data.id==action.payload)
           state.value.splice(IndexID,1)
           alert("User deleted!")

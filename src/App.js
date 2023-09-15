@@ -7,9 +7,13 @@ import Store from './config/StoreConfig'
 
 const App = () => {
   return (
+    //config the User Store
     <Provider store={Store}>
     <NavBar/>
+
+    {/* Route Pages */}
     <PageRoute/>
+    
     <Footer/>
     </Provider>
   )

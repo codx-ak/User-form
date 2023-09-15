@@ -13,25 +13,35 @@ import { CityData, CountryData, StateData } from "../Api/Country";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AddUserReducer } from "../db/UserSlice";
+
 const AddUser = () => {
+  //All country ,Stateand & City Data from API
   const [countryData, setCountry] = useState([]);
-  const [SelectedCountry, setSelectedCountry] = useState("India");
-  const [SelectedState, setSelectedState] = useState("Tamil Nadu");
   const [stateData, setState] = useState([]);
   const [cityData, setCity] = useState([]);
+
+  //User Selected Country and Default value is INDIA
+  const [SelectedCountry, setSelectedCountry] = useState("India");
+  //User Selected State and Default value is TAMIL NADU
+  const [SelectedState, setSelectedState] = useState("Tamil Nadu");
+
+  
   const dispatch=useDispatch()
   const navigate=useNavigate()
 
+  //Its API Call getting All Country Data
   useEffect(() => {
     CountryData()
       .then((data) => setCountry(data))
       .catch((err) => console.log(err));
   }, []);
 
+  //Its API Call getting State Data based on selected country
   useEffect(() => {
     StateData(SelectedCountry).then((data) => setState(data));
   }, [SelectedCountry]);
 
+  //Its API Call getting City Data based on selected State
   useEffect(() => {
     CityData(SelectedState).then((data) => setCity(data));
   }, [SelectedState]);
@@ -41,8 +51,12 @@ const AddUser = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  // summitting form
   const onSubmit = (data) => {
+    // calling dispatch function
     dispatch(AddUserReducer(data))
+    // navigate  to home
     navigate('/home')
   };
   return (
@@ -50,6 +64,7 @@ const AddUser = () => {
       <Card className="Form-Card" variant="outlined">
         <Typography variant="h5">New User</Typography>
         <Typography sx={{color:'gray',marginBottom:2}} variant="subtitle2">Navigating Life's Journey, One Click at a Time</Typography>
+        
         <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             {...register("first_name", {
@@ -189,11 +204,13 @@ const AddUser = () => {
             <Link to="/home">
               <Button sx={{color:'black'}} variant="text">Cancel</Button>
             </Link>
+            
             <Button type="submit" variant="contained">
               Create Now
             </Button>
           </Box>
         </form>
+        
       </Card>
     </Container>
   );

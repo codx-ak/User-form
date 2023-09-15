@@ -3,6 +3,7 @@ import UserSlice from "../db/UserSlice";
 
 const Store=configureStore({
     reducer:{
+        //User Redux Store
         userStore:UserSlice
     }
 })
