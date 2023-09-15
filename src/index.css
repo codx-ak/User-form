@@ -43,3 +43,21 @@ a{
 .MuiFormHelperText-root{
   color: rgba(250, 62, 62, 0.833) !important;
 }
+.mobile{
+  width: 220px;
+}
+
+@media (max-width: 420px) {
+  html {
+    font-size: 14px !important;
+  }
+  .Form-Card{
+    width: auto;
+  }
+  .css-1jccwd1-MuiAutocomplete-root {
+    width:100px !important;
+  }
+  .mobile{
+    width: 190px;
+  }
+}

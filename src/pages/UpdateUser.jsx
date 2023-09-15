@@ -130,7 +130,8 @@ const [cityData, setCity] = useState([]);
               )}
             />
             <TextField
-              sx={{ width: "220px", marginLeft: 1 }}
+              className="mobile"
+              sx={{marginLeft:1}}
               {...register("mobile", {
                 required: "Enter Mobile No",
                 minLength: { value: 7, message: "Enter Valid Number" },
