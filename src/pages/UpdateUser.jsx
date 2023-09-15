@@ -190,7 +190,7 @@ const [cityData, setCity] = useState([]);
             getOptionLabel={(option) => option.state_name}
             defaultValue={{state_name:FilteredData.state}}
             filterSelectedOptions
-            onChange={(e, value) => setSelectedState(value.state_name)}
+            onChange={(e, value) => value?setSelectedState(value.state_name):setSelectedState("India")}
             renderInput={(params) => (
               <TextField
                 {...params}
