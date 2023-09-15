@@ -60,4 +60,8 @@ a{
   .mobile{
     width: 190px;
   }
+  .css-b2oagi {
+    width: 100px !important;
+    display: inline-block;
+}
 }
