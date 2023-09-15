@@ -6,53 +6,50 @@ const UserSlice=createSlice({
     initialState: {
       value: [
         {
-            id:1,
-            first_name:"ak",
+            id:234,
+            first_name:"Moorthi",
             last_name:"Moorthi",
+            country_code:'+91',
             email:"ak@gmail.com",
             mobile:'3456788764',
             address_1:'2/2,Hosur',
-            address_2:'3/3,shoolgiri',
-            state:'Tamilnadu',
-            city:'Hosur',
-            country:'India',
-            zip_code:635117
-        },
-        {
-            id:2,
-            first_name:"ak",
-            last_name:"Moorthi",
-            email:"ak@gmail.com",
-            mobile:'3456788764',
-            address_1:'2/2,Hosur',
-            address_2:'3/3,shoolgiri',
-            state:'Tamilnadu',
+            address_2:'',
+            state:'Tamil Nadu',
             city:'Hosur',
             country:'India',
             zip_code:635117
         }
+        
       ],
     },
     reducers:{
-        createUser:(state,action)=>{
-          state.value.push(action.payload)
+        AddUserReducer:(state,action)=>{
+          var UserId = Math.random().toString(8).slice(17)
+          const UserDetails={
+            id:UserId,
+            ...action.payload
+          }
+          state.value.push(UserDetails)
           alert('created')
         },
-        UpdateUser:()=>{},
+        UpdateUserReducer:(state,action)=>{
+          const IndexID=state.value.findIndex((data)=>data.id==action.payload.id)
+          state.value[IndexID]={
+            id:action.payload.id,
+            ...action.payload.data
+          }
+          alert("Updated Successfully")
+          
+        },
         
         DeleteUser:(state,action)=>{
-          let UserID=null
-          state.value.find((user,index)=>{
-            if(user.id===action.payload){
-              UserID=index 
-            }
-          return ''})
-            state.value.splice(UserID,1)
-          alert("deleted")
+          const IndexID=state.value.findIndex((data)=>data.id==action.payload)
+          state.value.splice(IndexID,1)
+          alert("User deleted!")
           
         }
     }
 })
-export const { createUser, UpdateUser, DeleteUser } = UserSlice.actions
+export const { AddUserReducer, UpdateUserReducer, DeleteUser } = UserSlice.actions
 
 export default UserSlice.reducer

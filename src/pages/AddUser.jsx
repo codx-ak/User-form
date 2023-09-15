@@ -10,13 +10,17 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { CityData, CountryData, StateData } from "../Api/Country";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AddUserReducer } from "../db/UserSlice";
 const AddUser = () => {
   const [countryData, setCountry] = useState([]);
   const [SelectedCountry, setSelectedCountry] = useState("India");
   const [SelectedState, setSelectedState] = useState("Tamil Nadu");
   const [stateData, setState] = useState([]);
   const [cityData, setCity] = useState([]);
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
 
   useEffect(() => {
     CountryData()
@@ -38,13 +42,14 @@ const AddUser = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(AddUserReducer(data))
+    navigate('/home')
   };
   return (
-    <Container>
+    <Container sx={{marginBottom:2}}>
       <Card className="Form-Card" variant="outlined">
         <Typography variant="h5">New User</Typography>
-        <Typography variant="subtitle2">Lorem ipsum dolor sit amet.</Typography>
+        <Typography sx={{color:'gray',marginBottom:2}} variant="subtitle2">Navigating Life's Journey, One Click at a Time</Typography>
         <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             {...register("first_name", {
@@ -182,7 +187,7 @@ const AddUser = () => {
           />
           <Box className="form-btn">
             <Link to="/home">
-              <Button variant="text">Cancel</Button>
+              <Button sx={{color:'black'}} variant="text">Cancel</Button>
             </Link>
             <Button type="submit" variant="contained">
               Create Now

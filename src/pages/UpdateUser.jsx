@@ -10,12 +10,15 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { CityData, CountryData, StateData } from "../Api/Country";
-import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { UpdateUserReducer } from "../db/UserSlice";
 const UpdateUser = () => {
 
   const {id}=useParams()
   const UserData=useSelector(state=>state.userStore.value)
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
   const FilteredData=UserData.find(data=>data.id=== Number(id))
 
   const [countryData, setCountry] = useState([]);
@@ -47,13 +50,14 @@ const UpdateUser = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(UpdateUserReducer({data,id:id}))
+    navigate('/')
   };
   return (
-    <Container>
+    <Container sx={{marginBottom:2}}>
       <Card className="Form-Card" variant="outlined">
-        <Typography variant="h5">New User</Typography>
-        <Typography variant="subtitle2">Lorem ipsum dolor sit amet.</Typography>
+        <Typography variant="h5">Update User</Typography>
+        <Typography sx={{color:'gray',marginBottom:2}} variant="subtitle2">Navigating Life's Journey, One Click at a Time</Typography>
         <form action="" method="post" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             {...register("first_name", {
@@ -61,7 +65,7 @@ const UpdateUser = () => {
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
             type="text"
-            value={FilteredData.first_name}
+            defaultValue={FilteredData.first_name}
             label="First Name"
             helperText={errors?.first_name && errors.first_name.message}
             variant="outlined"
@@ -72,7 +76,7 @@ const UpdateUser = () => {
               minLength: { value: 5, message: "Minimum 5 Characters" },
             })}
             type="text"
-            value={FilteredData.last_name}
+            defaultValue={FilteredData.last_name}
             label="Last Name"
             helperText={errors?.last_name && errors.last_name.message}
             variant="outlined"
@@ -81,7 +85,7 @@ const UpdateUser = () => {
             {...register("email", { required: "Enter Email Id" })}
             type="email"
             label="Email"
-            value={FilteredData.email}
+            defaultValue={FilteredData.email}
             helperText={errors?.email && errors.email.message}
             variant="outlined"
           />
@@ -115,7 +119,7 @@ const UpdateUser = () => {
                 minLength: { value: 7, message: "Enter Valid Number" },
                 maxLength: { value: 13, message: "Enter Valid Number" },
               })}
-              value={FilteredData.mobile}
+              defaultValue={FilteredData.mobile}
               type="number"
               label="Mobile"
               helperText={errors?.mobile && errors.mobile.message}
@@ -129,7 +133,7 @@ const UpdateUser = () => {
             })}
             type="text"
             label="Address 1"
-            value={FilteredData.address_1}
+            defaultValue={FilteredData.address_1}
             helperText={errors?.address_1 && errors.address_1.message}
             variant="outlined"
           />
@@ -137,7 +141,7 @@ const UpdateUser = () => {
             {...register("address_2")}
             type="text"
             label="Address 2"
-            value={FilteredData.address_2 || ''}
+            defaultValue={FilteredData.address_2 || ''}
             variant="outlined"
           />
 
@@ -196,16 +200,16 @@ const UpdateUser = () => {
             {...register("zip_code", { required: "Enter Zip Code" })}
             type="number"
             label="Zip Code"
-            value={FilteredData.zip_code}
+            defaultValue={FilteredData.zip_code}
             helperText={errors?.zip_code && errors.zip_code.message}
             variant="outlined"
           />
           <Box className="form-btn">
             <Link to="/home">
-              <Button variant="text">Cancel</Button>
+              <Button sx={{color:'black'}} variant="text">Cancel</Button>
             </Link>
             <Button type="submit" color="success" variant="contained">
-              Update 
+              Update User
             </Button>
           </Box>
         </form>

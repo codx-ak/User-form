@@ -1,6 +1,7 @@
 import {
   Button,
   Container,
+  Table,
   TableBody,
   TableCell,
   TableContainer,
@@ -29,12 +30,12 @@ const Home = () => {
         </Link>
       </Typography>
       <TableContainer sx={{ height: "80vh" }} align="center">
+        <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">S.No</TableCell>
+            <TableCell/>
+            <TableCell align="center">User ID</TableCell>
             <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">View</TableCell>
             <TableCell align="center">Edit</TableCell>
             <TableCell align="center">Delete</TableCell>
           </TableRow>
@@ -50,6 +51,7 @@ const Home = () => {
             </TableCell>
           )}
         </TableBody>
+        </Table>
       </TableContainer>
     </Container>
   );
